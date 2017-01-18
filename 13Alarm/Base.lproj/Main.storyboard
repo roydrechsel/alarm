@@ -99,19 +99,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="nlg-lZ-g83">
+                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="nlg-lZ-g83">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="506112809.51210898">
                                                         <!--2017-01-14 18:53:29 +0000-->
                                                     </date>
                                                 </datePicker>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="nlg-lZ-g83" secondAttribute="bottom" id="6jw-wT-PUN"/>
-                                                <constraint firstItem="nlg-lZ-g83" firstAttribute="top" secondItem="7c2-dh-ufZ" secondAttribute="top" id="Dgm-YJ-zmm"/>
-                                                <constraint firstAttribute="trailing" secondItem="nlg-lZ-g83" secondAttribute="trailing" id="n5l-ru-APG"/>
-                                                <constraint firstItem="nlg-lZ-g83" firstAttribute="leading" secondItem="7c2-dh-ufZ" secondAttribute="leading" id="xmu-fb-g8b"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

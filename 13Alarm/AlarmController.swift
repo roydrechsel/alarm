@@ -14,19 +14,13 @@ class AlarmController {
     
     var alarms: [Alarm] = []
     
+    
     func addAlarm(fireTimeFromMidnight: TimeInterval, name: String) -> Alarm {
         
         let alarm = Alarm(fireTimeFromMidnight: fireTimeFromMidnight, name: name)
         alarms.append(alarm)
         
         return alarm
-    }
-    
-    func delete(alarm: Alarm) {
-        
-        guard let index = alarms.index(of: alarm) else { return }
-        alarms.remove(at: index)
-        
     }
     
     func update(alarm: Alarm, fireTimeFromMidnight: TimeInterval, name: String) {
@@ -40,6 +34,14 @@ class AlarmController {
         
         alarm.enabled = !alarm.enabled
     }
+    
+    func delete(alarm: Alarm) {
+        
+        guard let index = alarms.index(of: alarm) else { return }
+        alarms.remove(at: index)
+        
+    }
+    
     
     var mockAlarms: [Alarm] {
 

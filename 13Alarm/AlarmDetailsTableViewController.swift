@@ -42,6 +42,8 @@ class AlarmDetailsTableViewController: UITableViewController {
     
     
     @IBAction func enableButtonTapped(_ sender: Any) {
+        
+        
     }
 
     // MARK: - Table view data source
