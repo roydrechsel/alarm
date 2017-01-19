@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmDetailsTableViewController: UITableViewController {
+class AlarmDetailsTableViewController: UITableViewController, AlarmScheduler {
 
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var messageText: UITextField!
@@ -28,12 +28,13 @@ class AlarmDetailsTableViewController: UITableViewController {
         let timeIntervalSinceMidnight = datePicker.date.timeIntervalSince(thisMorningAtMidnight)
         if let alarm = alarm {
             AlarmController.shared.update(alarm: alarm, fireTimeFromMidnight: timeIntervalSinceMidnight, name: title)
-            
+            cancelLocalNotification(for: alarm)
+            scheduleLocalNotification(for: alarm)
             
         } else {
             let alarm = AlarmController.shared.addAlarm(fireTimeFromMidnight: timeIntervalSinceMidnight, name: title)
             self.alarm = alarm
-            
+            scheduleLocalNotification(for: alarm)
         }
         
         let _ = navigationController?.popViewController(animated: true)
@@ -42,8 +43,14 @@ class AlarmDetailsTableViewController: UITableViewController {
     
     
     @IBAction func enableButtonTapped(_ sender: Any) {
-        
-        
+        guard let alarm = alarm else { return }
+        AlarmController.shared.toggleEnabled(for: alarm)
+        if alarm.enabled {
+            scheduleLocalNotification(for: alarm)
+        } else {
+            cancelLocalNotification(for: alarm)
+        }
+        updateViews()
     }
 
     // MARK: - Table view data source

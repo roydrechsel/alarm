@@ -8,13 +8,14 @@
 
 import UIKit
 
-class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDelegate {
+class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDelegate, AlarmScheduler {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,7 +39,7 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
             // Delete the row from the data source
             let alarm = AlarmController.shared.alarms[indexPath.row]
             AlarmController.shared.delete(alarm: alarm)
-            
+            cancelLocalNotification(for: alarm)            
             
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -54,6 +55,9 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
         
         if alarm.enabled {
             
+            scheduleLocalNotification(for: alarm)
+        } else {
+            cancelLocalNotification(for: alarm)
         }
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }

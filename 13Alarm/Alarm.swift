@@ -48,11 +48,11 @@ class Alarm: NSObject, NSCoding {
     var enabled: Bool
     let uuid: String
     
-//    var fireDate: Date? {
-//        guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {return nil}
-//        let fireDateFromThisMorning = Date(timeInterval: fireTimeFromMidnight, since: thisMorningAtMidnight as Date)
-//        return fireDateFromThisMorning
-//    }
+    var fireDate: Date? {
+        guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {return nil}
+        let fireDateFromThisMorning = Date(timeInterval: fireTimeFromMidnight, since: thisMorningAtMidnight as Date)
+        return fireDateFromThisMorning
+    }
     
     var fireTimeAsString: String {
         let fireTimeFromMidnight = Int(self.fireTimeFromMidnight)
